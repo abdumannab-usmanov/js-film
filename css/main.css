@@ -75,3 +75,10 @@ body{
 .subitem{
     color: dimgray;
 }
+
+
+.js-select{
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
+}
