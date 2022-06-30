@@ -1,5 +1,5 @@
 let elList = document.querySelector(".js-list")
-
+var elSelect = document.querySelector('.js-select');
 
 
 function movie(arr,list){
@@ -52,3 +52,38 @@ function movie(arr,list){
     }    
 }
 movie(films,elList)
+
+
+let result = [];
+elSelect.addEventListener('change', function () {
+    
+    elList.innerHTML = "";
+    result = []
+    
+    let selectValue = elSelect.value
+    
+    films.forEach((animal) => {
+        if (animal.genres.includes(selectValue)) {
+            result.push(animal);
+        }
+    });
+    
+    movie(result, elList)
+});
+
+
+
+
+let myArray = [];
+
+for (item of films) {
+  myArray.push(...item.genres);
+}
+
+let mySet = new Set(myArray);
+
+for (const item of Array.from(mySet)) {
+  let li = document.createElement("option");
+  li.textContent = item;
+  elSelect.appendChild(li);
+}
