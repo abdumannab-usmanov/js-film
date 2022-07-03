@@ -1,5 +1,6 @@
 let elList = document.querySelector(".js-list")
-var elSelect = document.querySelector('.js-select');
+let  elSelect = document.querySelector('.js-select');
+
 
 
 function movie(arr,list){
@@ -12,26 +13,26 @@ function movie(arr,list){
         let elImg = document.createElement("img");
         let elText = document.createElement("p");
         let elSubList = document.createElement("ul");
-
-
+        
+        
         for (var genre of film.genres){
-
+            
             
             let elSubItem = document.createElement("li");
-
+            
             elSubItem.textContent = genre
-
+            
             elSubItem.setAttribute("class", "subitem")
-
+            
             elSubList.appendChild(elSubItem)
         }
-
+        
         
         
         elTitle.textContent = film.title;
         elText.textContent = film.overview.split(" ").slice(0,20).join(' ')+ "...";
-
-
+        
+        
         eldiv.setAttribute("class", "div")
         elItem.setAttribute("class", "js-item")
         elTitle.setAttribute("class", "js-title")
@@ -72,18 +73,41 @@ elSelect.addEventListener('change', function () {
 });
 
 
-
-
 let myArray = [];
 
 for (item of films) {
-  myArray.push(...item.genres);
+    myArray.push(...item.genres);
 }
 
 let mySet = new Set(myArray);
 
 for (const item of Array.from(mySet)) {
-  let li = document.createElement("option");
-  li.textContent = item;
-  elSelect.appendChild(li);
+    let li = document.createElement("option");
+    li.textContent = item;
+    elSelect.appendChild(li);
 }
+
+
+let elSelect2 = document.querySelector(".js-select2")
+
+
+
+
+elSelect2.addEventListener("change", function(){
+    elList.innerHTML = "";
+    let sort = [];
+
+    
+    sort = films.sort(function (a, b) {
+        if (b.title > a.title, elSelect2.value === 'A-Z') {
+            return -1;
+        }
+        else if(a.title > b.title){
+            return -1
+        }
+        return films
+    });
+    movie(sort, elList)
+    
+})
+
