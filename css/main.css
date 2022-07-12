@@ -80,6 +80,7 @@ body{
 .js-select{
     text-align: center;
     padding: 5px;
+    margin-right: 20px;
     margin-bottom: 20px;
 }
 
@@ -88,4 +89,53 @@ body{
     text-align: center;
     padding: 5px;
     margin-bottom: 20px;
+    margin-right: auto;
+}
+
+
+.wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.js-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bokmark-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 300px;
+    min-height: 200px;
+    background-color: bisque;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid lightblue;
+    margin-bottom: 20px;
+}
+
+.delete-item{
+    margin-bottom: 10px;
+}
+
+.delete-bookmark{
+    margin-left: 10px;
+
+}
+
+
+.later{
+    font-size: 28px;
+    font-weight: 500;
+    margin-right: 60px;
+    margin-left: 60px;
+
+}
+
+
+.new-bookmark{
+    margin-right: 20px;
 }
