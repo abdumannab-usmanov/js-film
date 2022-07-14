@@ -4,17 +4,20 @@ let  elForm = document.querySelector('.js-form');
 let  elInput = document.querySelector('.js-input');
 let  elBookmarkList = document.querySelector('.bokmark-list');
 let  box = document.querySelector('.right-side');
-let  modal = document.querySelector(".modal")
+let  elModal = document.querySelector(".modal")
 
 
+const localList = JSON.parse(window.localStorage.getItem("bookmark"))
+let bookmark = localList || []
 
-let bookmark = []
-let modalArr = [];
+
+const moviesFragment = document.createDocumentFragment()
 
 
 function renderBookmark(arr, node){
     
     node.innerHTML = ""
+    window.localStorage.setItem("bookmark", JSON.stringify(bookmark))
     
     arr.forEach(el => {
         
@@ -33,9 +36,9 @@ function renderBookmark(arr, node){
         node.appendChild(newLi)
         
     })
-    
-    
 }
+renderBookmark(localList, elBookmarkList)
+
 elBookmarkList.addEventListener("click", evt => {
     let btnDelete = evt.target.matches(".delete-bookmark")
     
@@ -102,7 +105,8 @@ function movie(arr,list){
         elImg.setAttribute("class", "img")
         newBookmark.classList.add("new-bookmark")
         newBookmark.dataset.filmId = film.id
-        
+        newMore.classList.add("modal-btn")
+        newMore.dataset.modalId = film.id
         
         
         
@@ -113,10 +117,10 @@ function movie(arr,list){
         eldiv.appendChild(newBookmark)
         eldiv.appendChild(newMore) 
         // eldiv.appendChild(elSubList)
-        list.appendChild(elItem)
-        
+        moviesFragment.appendChild(elItem)    
     }    
-}
+    list.appendChild(moviesFragment)
+} 
 movie(films,elList)
 
 
@@ -195,45 +199,53 @@ elList.addEventListener("click", (evt) => {
             renderBookmark(bookmark , elBookmarkList)
         }
         
+    }
+    
+    if(evt.target.matches(".modal-btn")){
+        elModal.innerHTML = ''
+        elModal.classList.add('open')
+        let modalId = evt.target.dataset.modalId
+        let element = films.find(e => e.id == modalId)
+        
+        let newBox = document.createElement("div")
+        let newtitle = document.createElement("h3")
+        let newtext = document.createElement("p")
+        let newBtn = document.createElement("button")
+        let newImg = document.createElement("img")
+        let newGenres = document.createElement("p")
+        
+        
+        
+        
+        newtitle.textContent = element.title
+        newtext.textContent = element.overview
+        newBtn.textContent = "X"
+        newGenres.textContent = element.genres
+        
+        
+        newBtn.setAttribute("class", "close-btn")
+        newImg.setAttribute("src", element.poster)
+        newtitle.setAttribute("class", "modal-title")
+        newtext.setAttribute("class", "modal-text")
+        newImg.classList.add("modal-img")
+        newBox.classList.add("box")
+        
+        
+        elModal.appendChild(newImg);
+        elModal.appendChild(newBtn);
+        newBox.appendChild(newtitle);
+        newBox.appendChild(newtext);
+        newBox.appendChild(newGenres);
+        elModal.appendChild(newBox);
         
     }
 })
 
-
-// elList.addEventListener("click", (evt) => {
-//     let btnInfo = evt.target.matches(".more-info")
-    
-//     if (btnInfo){
-//         // modal.classList.add("del")
-//         let moreBtnId = evt.target.dataset.moreId;
-//         let findBtnIdMore = films.find(e => e.id == moreBtnId);
-        
-
-//         if(!modalArr.includes(findBtnIdMore)){
-//             modalArr.push(findBtnIdMore);
-
-//         };
-
-    
-        
-
-//     }
-    
-    
-// })
+elModal.addEventListener("click", function(evt){
+    if (evt.target.matches(".close-btn")){
+        elModal.classList.remove("open")
+    }
+})
 
 
-// function filmModal(movie, el){
-
-//     for(film of info){
-
-//         let item = document.createElement("div")
-
-
-
-    
-    
-//     }
-
-// }
 

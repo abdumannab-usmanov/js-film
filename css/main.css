@@ -139,3 +139,59 @@ body{
 .new-bookmark{
     margin-right: 20px;
 }
+
+
+.modal{
+    position: fixed;
+    margin: auto;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 600px;
+    height: 470px;
+    background-color: cadetblue;
+    border-radius: 10px;
+    display: none;
+}
+
+.open{
+    display: block;
+}
+
+
+.modal-img{
+    border-radius: 10px;
+    width: 300px;
+    height: auto;
+}
+
+.box{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    width: 250px;
+}
+
+.close-btn{
+    font-size: 22px;
+    position: absolute;
+    right: 3px;
+    top: 5px;
+    border: none;
+    color:white;
+    background-color: red;
+    border-radius: 5px;
+    outline: none;
+}
+
+.modal-title{
+    color: black;
+    font-size: 22px;
+}
+
+.modal-text{
+    color: black;
+    font-size: 18px;
+}
