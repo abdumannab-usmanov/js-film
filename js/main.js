@@ -5,6 +5,9 @@ let  elInput = document.querySelector('.js-input');
 let  elBookmarkList = document.querySelector('.bokmark-list');
 let  box = document.querySelector('.right-side');
 let  elModal = document.querySelector(".modal")
+let elTemplate = document.querySelector(".template").content
+
+
 
 
 const localList = JSON.parse(window.localStorage.getItem("bookmark"))
@@ -20,7 +23,7 @@ function renderBookmark(arr, node){
     window.localStorage.setItem("bookmark", JSON.stringify(bookmark))
     
     arr.forEach(el => {
-        
+
         let newLi = document.createElement("li")
         let newBtnDelete = document.createElement("button")
         
@@ -64,60 +67,16 @@ function movie(arr,list){
     
     for(film of arr){
         
-        let elItem = document.createElement("li");
-        let eldiv = document.createElement("div");
-        let elTitle = document.createElement("h3");
-        let elImg = document.createElement("img");
-        let elText = document.createElement("p");
-        let newBookmark = document.createElement("button")
-        let newMore = document.createElement("button")
-        
-        
-        // let elSubList = document.createElement("ul");
-        
-        
-        // for (var genre of film.genres){
-        
-        
-        //     let elSubItem = document.createElement("li");
-        
-        //     elSubItem.textContent = genre
-        
-        //     elSubItem.setAttribute("class", "subitem")
-        
-        //     elSubList.appendChild(elSubItem)
-        // }
-        
-        
-        
-        elTitle.textContent = film.title;
-        elText.textContent = film.overview.split(" ").slice(0,20).join(' ') + "...";
-        newBookmark.textContent = "bookmark"
-        newMore.textContent = "More-info"
-        
-        
-        eldiv.setAttribute("class", "div")
-        elItem.setAttribute("class", "js-item")
-        elTitle.setAttribute("class", "js-title")
-        elText.setAttribute("class", "js-text")
-        // elSubList.setAttribute("class", "sublist")
-        elImg.setAttribute("src", film.poster)
-        elImg.setAttribute("class", "img")
-        newBookmark.classList.add("new-bookmark")
-        newBookmark.dataset.filmId = film.id
-        newMore.classList.add("modal-btn")
-        newMore.dataset.modalId = film.id
-        
-        
-        
-        elItem.appendChild(elImg)
-        elItem.appendChild(eldiv)
-        eldiv.appendChild(elTitle)
-        eldiv.appendChild(elText)
-        eldiv.appendChild(newBookmark)
-        eldiv.appendChild(newMore) 
-        // eldiv.appendChild(elSubList)
-        moviesFragment.appendChild(elItem)    
+
+        let newTemplate = elTemplate.cloneNode(true)
+
+        newTemplate.querySelector(".img").src = film.poster
+        newTemplate.querySelector(".js-title").textContent = film.title
+        newTemplate.querySelector(".js-text").textContent = film.overview.split(" ").slice(0,20).join(' ') + "..."
+        newTemplate.querySelector(".new-bookmark").dataset.filmId = film.id
+        newTemplate.querySelector(".modal-btn").dataset.modalId = film.id
+
+        moviesFragment.appendChild(newTemplate)    
     }    
     list.appendChild(moviesFragment)
 } 

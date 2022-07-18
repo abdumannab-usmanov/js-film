@@ -9,42 +9,59 @@
 </head>
 <body>
     
-
+    
     <main class="site-main">
         <div class="container">
-
+            
             <h1 class="title">Movies</h1>
-    
+            
             <div class="wrapper">
                 <select class="js-select">
-        
+                    
                 </select>
-        
+                
                 <select class="js-select2">
                     <option selected disabled value="choose">Order by alfabet</option>
-                     <option value="A-Z">A-Z</option>
+                    <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option> 
-                 </select> 
-        
-                 <ul class="bokmark-list">
-                    <li class="later">Watch Later</li>
-                 </ul>
-                 
-        
-                </div>
+                </select> 
                 
-    
-    
+                <ul class="bokmark-list">
+                    <li class="later">Watch Later</li>
+                </ul>
+                
+                
+            </div>
+            
+            
+            
             <ul class="js-list"></ul>
-    
-    
+            
+            
         </div>
     </main>
-
     
-
+    
+    
     <div class="modal"></div>
-
+    
+    
+    <template class="template">
+        
+        <li class="js-item">
+            <img class="img" alt="movies cartoon">
+            <div class="div">
+                <h3 class="js-title"></h3>
+                <p class="js-text"></p>
+                
+                <button class="new-bookmark">bookmark</button>
+                <button class="modal-btn">More-info</button>
+                
+                
+            </div>
+        </li>
+        
+    </template>
 
 
     <script src="./js/films.js"></script>
